@@ -1,10 +1,13 @@
 package com.example.arturmusayelyan.threadmultithreadindhandler;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,16 +18,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    TextView tv_json;
+    private TextView tv_json;
+    private ProgressBar progressBar;
 
-    String JSON_STRING;
-    String valueFromRequest;
+    private String JSON_STRING;
+    private String valueFromRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv_json = (TextView) findViewById(R.id.json_textView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+        progressBar.setVisibility(View.GONE);
     }
 
     public void onClick(View view) {
@@ -33,12 +39,18 @@ public class MainActivity extends AppCompatActivity {
                 new BackgroundTask().execute();
                 break;
             case R.id.parseJson_button:
-
+                if (valueFromRequest == null) {
+                    Toast.makeText(this, "first getJson", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(this, DisplayRecyclerView.class);
+                    intent.putExtra("json_data", valueFromRequest);
+                    startActivity(intent);
+                }
                 break;
         }
     }
 
-    class BackgroundTask extends AsyncTask<Void, Void, String> {
+    class BackgroundTask extends AsyncTask<Void, Integer, String> {
 
         String json_url;
 
@@ -70,14 +82,18 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
+
+
+        protected void onProgressUpdate(Integer... values) {
+            progressBar.setVisibility(View.VISIBLE);
+
         }
 
         @Override
         protected void onPostExecute(String result) {
             tv_json.setText(result);
+
+            valueFromRequest = result;
         }
     }
 }

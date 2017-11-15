@@ -35,4 +35,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/json_textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp" />
+
 </RelativeLayout>
