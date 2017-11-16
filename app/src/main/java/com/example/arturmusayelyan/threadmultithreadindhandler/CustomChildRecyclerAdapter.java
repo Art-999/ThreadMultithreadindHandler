@@ -7,20 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
- * Created by artur.musayelyan on 15/11/2017.
+ * Created by artur.musayelyan on 16/11/2017.
  */
-
-public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder> {
+public class CustomChildRecyclerAdapter extends RecyclerView.Adapter<CustomChildRecyclerAdapter.MyViewHolder> {
     private Context context;
     private LayoutInflater inflater;
-    private List<Contacts> dataList = Collections.emptyList();
+    //private List<ChildrenCats> dataList = Collections.emptyList();
+    private ArrayList<ChildrenCats> dataList = new ArrayList<>();
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
 
-    public CustomRecyclerAdapter(Context context, List<Contacts> list) {
+    public CustomChildRecyclerAdapter(Context context, ArrayList<ChildrenCats> list) {
         this.context = context;
         this.dataList = list;
         inflater = LayoutInflater.from(context);
@@ -49,11 +48,11 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return dataList == null ? 0 : dataList.size();
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyViewHolder extends RecyclerView.ViewHolder  {
         TextView tv1, tv2, tv3;
         View bigView;
 
@@ -63,13 +62,10 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
             tv2 = itemView.findViewById(R.id.tv2_customRow);
             tv3 = itemView.findViewById(R.id.tv3_customRow);
             bigView = itemView.findViewById(R.id.customRow);
-            itemView.setOnClickListener(this);
+
         }
 
-        @Override
-        public void onClick(View v) {
-            recyclerViewOnItemClickListener.onItemClict(v, getAdapterPosition());
-        }
+
     }
 
     public void delete(int position) {
@@ -77,3 +73,4 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
         notifyItemRemoved(position);
     }
 }
+

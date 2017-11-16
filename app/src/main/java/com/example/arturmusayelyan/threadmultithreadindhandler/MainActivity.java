@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, DisplayRecyclerView.class);
                     intent.putExtra("json_data", valueFromRequest);
                     startActivity(intent);
+                    //tv_json.setText("");
                 }
                 break;
         }

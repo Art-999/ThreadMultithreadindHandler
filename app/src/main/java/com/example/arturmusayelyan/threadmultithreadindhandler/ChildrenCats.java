@@ -38,4 +38,13 @@ class ChildrenCats {
     public void setCount(int count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "ChildrenCats{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                '}';
+    }
 }

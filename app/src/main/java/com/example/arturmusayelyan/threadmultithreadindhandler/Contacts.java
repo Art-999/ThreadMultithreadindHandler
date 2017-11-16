@@ -10,7 +10,7 @@ public class Contacts {
     private String id;
     private String name;
     private int count;
-    private List<ChildrenCats> childrenCatsList;
+    private List<Object> childrenCatsList;
 
     public Contacts() {
 
@@ -22,7 +22,7 @@ public class Contacts {
         this.count = count;
     }
 
-    public Contacts(String id, String name, int count, List<ChildrenCats> childrenCatsList) {
+    public Contacts(String id, String name, int count, List<Object> childrenCatsList) {
         this.id = id;
         this.name = name;
         this.count = count;
@@ -53,11 +53,11 @@ public class Contacts {
         this.count = count;
     }
 
-    public List<ChildrenCats> getChildrenCatsList() {
+    public List<Object> getChildrenCatsList() {
         return childrenCatsList;
     }
 
-    public void setChildrenCatsList(List<ChildrenCats> list) {
+    public void setChildrenCatsList(List<Object> list) {
         this.childrenCatsList = list;
     }
 
