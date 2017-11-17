@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             json_url = "https://freemegalist.com/api.php/?action=categories";
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -86,12 +87,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         protected void onProgressUpdate(Integer... values) {
-            progressBar.setVisibility(View.VISIBLE);
+          //  System.out.println("List"+"worked "+values);
 
         }
 
         @Override
         protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.GONE);
             tv_json.setText(result);
 
             valueFromRequest = result;
